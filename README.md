@@ -1,8 +1,7 @@
 # BWMeter
 Bandwidth meter in Python, with web interface
 
-## Installation
-### Prerequisites
+## Prerequisites
 * A webserver (like apache or nginx)
 * MySQL database
 * PHP5
@@ -21,3 +20,21 @@ sudo mysql_install_db
 sudo apt-get install python3 python3-pip libmysqlclient-dev
 sudo pip3 install mysqlclient
 ```
+## Installation
+### Clone this repository
+```
+git clone https://github.com/JulV94/BWMeter
+cd BWMeter
+```
+### Initialize
+```
+./setup.py /var/www/html/
+```
+## Run
+```
+./BWMeter.py
+```
+
+Or add a cron job to get a constant measurement and build the graphs.
+
+Check dashboard graphs at http://localhost/BWDashboard
