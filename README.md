@@ -18,6 +18,6 @@ sudo mysql_install_db
 * pip for python 3
 * mysqlclient for python 3
 ```
-sudo apt-get install python3 python3-pip
+sudo apt-get install python3 python3-pip libmysqlclient-dev
 sudo pip3 install mysqlclient
 ```
