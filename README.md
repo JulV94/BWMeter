@@ -2,6 +2,7 @@
 Bandwidth meter in Python, with web interface
 
 ## Prerequisites
+* speedtest-cli
 * A webserver (like apache or nginx)
 * MySQL database
 * PHP5
@@ -19,6 +20,7 @@ sudo mysql_install_db
 ```
 sudo apt-get install python3 python3-pip libmysqlclient-dev
 sudo pip3 install mysqlclient
+sudo pip3 install speedtest-cli
 ```
 ## Installation
 ### Clone this repository
