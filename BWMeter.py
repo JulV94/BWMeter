@@ -5,12 +5,14 @@
 import subprocess as sp
 import MySQLdb as sql
 import json
+import os
 
 
 def take_measurement():
-    result = sp.Popen("speedtest-cli-extras/bin/speedtest-csv", stdout=sp.PIPE).stdout.read().decode("utf-8").split(";")
+    script_dir = os.path.dirname(__file__)
+    result = sp.Popen(script_dir + "/speedtest-cli-extras/bin/speedtest-csv", stdout=sp.PIPE).stdout.read().decode("utf-8").split(";")
 
-    with open('config/config.json') as config_file:
+    with open(script_dir + '/config/config.json') as config_file:
         config = json.load(config_file)
 
     db = sql.connect(
