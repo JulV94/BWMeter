@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Matrix Admin</title>
+<title>Bandwidth Dashboard</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -105,6 +105,32 @@
       <span class="percent">87%</span>
       <div class="stat">604.44 / 4000 MB</div>
     </li>
+    <li class="content"><span>Start graph date</span>
+      <div  data-date="12-02-2012" class="input-append date datepicker">
+        <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span2" >
+        <span class="add-on"><i class="icon-th"></i></span>
+      </div>
+    </li>
+    <li class="content"><span>End graph date</span>
+      <div class="well">
+        <div id="datetimepicker1" class="input-append date">
+          <input data-format="dd/MM/yyyy hh:mm:ss" type="text">
+          <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+          </span>
+        </div>
+      </div>
+      <script type="text/javascript">
+      $(function() {
+      $('#datetimepicker1').datetimepicker({
+      language: 'pt-BR'
+      });
+      });
+      </script>
+    </li>
+    <li class="content">
+      <button class="btn" >Apply</button>
+    </li>
   </ul>
 </div>
 <!--sidebar-menu-->
@@ -113,29 +139,11 @@
 <div id="content">
 <!--breadcrumbs-->
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Dashboard</a></div>
   </div>
 <!--End-breadcrumbs-->
 
-<!--Action boxes-->
   <div class="container-fluid">
-    <div class="quick-actions_homepage">
-      <ul class="quick-actions">
-        <li class="bg_lb"> <a href="index.html"> <i class="icon-dashboard"></i> <span class="label label-important">20</span> My Dashboard </a> </li>
-        <li class="bg_lg span3"> <a href="charts.html"> <i class="icon-signal"></i> Charts</a> </li>
-        <li class="bg_ly"> <a href="widgets.html"> <i class="icon-inbox"></i><span class="label label-success">101</span> Widgets </a> </li>
-        <li class="bg_lo"> <a href="tables.html"> <i class="icon-th"></i> Tables</a> </li>
-        <li class="bg_ls"> <a href="grid.html"> <i class="icon-fullscreen"></i> Full width</a> </li>
-        <li class="bg_lo span3"> <a href="form-common.html"> <i class="icon-th-list"></i> Forms</a> </li>
-        <li class="bg_ls"> <a href="buttons.html"> <i class="icon-tint"></i> Buttons</a> </li>
-        <li class="bg_lb"> <a href="interface.html"> <i class="icon-pencil"></i>Elements</a> </li>
-        <li class="bg_lg"> <a href="calendar.html"> <i class="icon-calendar"></i> Calendar</a> </li>
-        <li class="bg_lr"> <a href="error404.html"> <i class="icon-info-sign"></i> Error</a> </li>
-
-      </ul>
-    </div>
-<!--End-Action boxes-->    
-
 <!--Chart-box-->    
     <div class="row-fluid">
       <div class="widget-box">
@@ -212,31 +220,38 @@
 <script src="js/matrix.tables.js"></script> 
 
 <script>
-    var pingData = [
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      var result = JSON.parse(xmlhttp.responseText);
+      var pingData = [
       {
-        x: ['2013-10-04 22:23:00', '2013-11-04 22:23:00', '2013-12-04 22:23:00'],
-        y: [1, 3, 6],
+        x: result['time'],
+        y: result['ping'],
         type: 'scatter'
-      }
-    ];
-    var downData = [
+      }];
+      var downData = [
       {
-        x: ['2013-10-04 22:23:00', '2013-11-04 22:23:00', '2013-12-04 22:23:00'],
-        y: [1, 3, 6],
+        x: result['time'],
+        y: result['down'],
         type: 'scatter'
-      }
-    ];
-    var upData = [
+      }];
+      var upData = [
       {
-        x: ['2013-10-04 22:23:00', '2013-11-04 22:23:00', '2013-12-04 22:23:00'],
-        y: [1, 3, 6],
+        x: result['time'],
+        y: result['up'],
         type: 'scatter'
-      }
-    ];
+      }];
 
-    Plotly.newPlot('pingGraph', pingData);
-    Plotly.newPlot('downGraph', downData);
-    Plotly.newPlot('upGraph', upData);
+      Plotly.newPlot('pingGraph', pingData);
+      Plotly.newPlot('downGraph', downData);
+      Plotly.newPlot('upGraph', upData);
+    }
+  }
+  xmlhttp.open("GET","query.php",true);
+  xmlhttp.send();
 </script>
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
