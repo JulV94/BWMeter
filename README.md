@@ -41,4 +41,4 @@ git submodule update --init --recursive
 
 Or add a cron job to get a constant measurement and build the graphs.
 
-Check dashboard graphs at [http://localhost/BWDashboard](http://localhost/BWDashboard "Your dashboard")
+Check dashboard graphs at [http://localhost/BW-dashboard](http://localhost/BW-dashboard "Your dashboard")
