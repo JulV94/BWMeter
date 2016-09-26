@@ -27,10 +27,11 @@ sudo pip3 install speedtest-cli
 ```
 git clone https://github.com/JulV94/BWMeter
 cd BWMeter
+git submodule update --init --recursive
 ```
 ### Initialize
 ```
-./setup.py /var/www/html/
+./setup.py
 ```
 ## Run
 ```
