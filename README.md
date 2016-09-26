@@ -39,6 +39,14 @@ git submodule update --init --recursive
 ./BWMeter.py
 ```
 
-Or add a cron job to get a constant measurement and build the graphs.
-
 Check dashboard graphs at [http://localhost/BW-dashboard](http://localhost/BW-dashboard "Your dashboard")
+
+## Using in crontab
+Beware of the ```$PATH``` env variable. ```speedtest-cli``` is located in ```/usr/local/bin```
+```
+crontab -e
+```
+add and edit the line fitting your needs
+```
+* * * * * PATH=$PATH:/usr/local/bin && export PATH && /usr/bin/python3 /path/to/git/repo/BWMeter.py
+```
