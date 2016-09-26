@@ -27,6 +27,10 @@ cd BWMeter
 git submodule update --init --recursive
 ```
 ### Initialize
+* Create a ```config.json``` file in the ```config``` directory based on the ```config.example.json``` file
+* Edit the first lines of the ```query.php``` file in the ```BW-dashboard``` directory with your MySQL informations
+* Move the ```BW-dashboard``` directory to your web directory (eg : ```/var/www/html/```)
+* Launch the setup script
 ```
 ./setup.py
 ```
