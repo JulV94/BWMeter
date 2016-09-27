@@ -13,11 +13,12 @@ Bandwidth meter in Python, with web interface
 For Ubuntu and apache
 ```
 sudo apt-get update
-sudo apt-get install apache2 mysql-server libapache2-mod-auth-mysql php5-mysql php5 libapache2-mod-php5 php5-mcrypt
+sudo apt-get install apache2 mysql-server php5-mysql php5 libapache2-mod-php5 php5-mcrypt
 sudo mysql_install_db
 sudo apt-get install python3 python3-pip libmysqlclient-dev
 sudo pip3 install mysqlclient
 sudo pip3 install speedtest-cli
+sudo service apache2 reload
 ```
 ## Installation
 ### Clone this repository
