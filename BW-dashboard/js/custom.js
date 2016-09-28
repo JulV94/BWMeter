@@ -14,34 +14,57 @@ $(function() {
     });
 });
 
-// generate the graphs
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-        var result = JSON.parse(xmlhttp.responseText);
-        var pingData = [
-        {
-          x: result['time'],
-          y: result['ping'],
-          type: 'scatter'
-        }];
-        var downData = [
-        {
-          x: result['time'],
-          y: result['down'],
-          type: 'scatter'
-        }];
-        var upData = [
-        {
-          x: result['time'],
-          y: result['up'],
-          type: 'scatter'
-        }];
+function queryGraphData() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            var result = JSON.parse(xmlhttp.responseText);
 
-        Plotly.newPlot('pingGraph', pingData);
-        Plotly.newPlot('downGraph', downData);
-        Plotly.newPlot('upGraph', upData);
+            var d3_ping = Plotly.d3;
+            var d3_down = Plotly.d3;
+            var d3_up = Plotly.d3;
+
+            var gd3_ping = d3_ping.select('#ping-graph');
+
+            var gd3_down = d3_down.select('#down-graph');
+
+            var gd3_up = d3_up.select('#up-graph');
+
+            var gd_ping = gd3_ping.node();
+            var gd_down = gd3_down.node();
+            var gd_up = gd3_up.node();
+
+            Plotly.newPlot(gd_ping, [{
+                    x: result['time'],
+                    y: result['ping'],
+                    type: 'scatter'
+                }], {
+            });
+
+            Plotly.newPlot(gd_down, [{
+                    x: result['time'],
+                    y: result['down'],
+                    type: 'scatter'
+                }], {
+            });
+
+            Plotly.newPlot(gd_up, [{
+                    x: result['time'],
+                    y: result['up'],
+                    type: 'scatter'
+                }], {
+            });
+
+            window.onresize = function() {
+                Plotly.Plots.resize(gd_ping);
+                Plotly.Plots.resize(gd_down);
+                Plotly.Plots.resize(gd_up);
+            };
+        }
     }
+    xmlhttp.open("GET","query.php",true);
+    xmlhttp.send();
 }
-xmlhttp.open("GET","query.php",true);
-xmlhttp.send();
+
+// Query data
+queryGraphData();
