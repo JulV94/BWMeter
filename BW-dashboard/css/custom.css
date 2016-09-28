@@ -1,3 +1,9 @@
 .anchor{
     padding-top:60px;
 }
+
+.vDivider{
+    border-right:1px solid #ddd;
+    height:100%;
+    margin:5px;
+}

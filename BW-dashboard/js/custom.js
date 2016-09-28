@@ -20,6 +20,10 @@ function queryGraphData() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             var result = JSON.parse(xmlhttp.responseText);
 
+            $('#ping-info').html('Min : '+result['ping_extr'][0]+'<span class="vDivider"></span>Avg : '+result['ping_extr'][1]+'<span class="vDivider"></span>Max : '+result['ping_extr'][2]+'<span class="vDivider"></span>ms');
+            $('#down-info').html('Min : '+result['down_extr'][0]+'<span class="vDivider"></span>Avg : '+result['down_extr'][1]+'<span class="vDivider"></span>Max : '+result['down_extr'][2]+'<span class="vDivider"></span>Mbits/s');
+            $('#up-info').html('Min : '+result['up_extr'][0]+'<span class="vDivider"></span>Avg : '+result['up_extr'][1]+'<span class="vDivider"></span>Max : '+result['up_extr'][2]+'<span class="vDivider"></span>Mbits/s');
+
             var d3_ping = Plotly.d3;
             var d3_down = Plotly.d3;
             var d3_up = Plotly.d3;

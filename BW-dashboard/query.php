@@ -12,14 +12,28 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
+    $options = array('time' => array(), 'ping' => array(), 'down' => array(), 'up' => array(), 'ping_extr' => array(),
+        'down_extr' => array(), 'up_extr' => array());
     $result = $conn->query("select * from measurements");
-    $options = array('time' => array(), 'ping' => array(), 'down' => array(), 'up' => array());
     while($data = mysqli_fetch_array($result)){
        $options['time'][] =  $data['measurement_time'];
        $options['ping'][] =  $data['ping'];
        $options['down'][] =  $data['down'];
        $options['up'][] =  $data['up'];
     }
+    $result = $conn->query("SELECT ROUND(MIN(ping),2), ROUND(AVG(ping),2), ROUND(MAX(ping),2), ROUND(MIN(down),2)
+        , ROUND(AVG(down),2), ROUND(MAX(down),2), ROUND(MIN(up),2), ROUND(AVG(up),2), ROUND(MAX(up),2)
+        FROM measurements"); // fetch min avg max
+    $data = mysqli_fetch_array($result);
+    $options['ping_extr'][] = $data[0];
+    $options['ping_extr'][] = $data[1];
+    $options['ping_extr'][] = $data[2];
+    $options['down_extr'][] = $data[3];
+    $options['down_extr'][] = $data[4];
+    $options['down_extr'][] = $data[5];
+    $options['up_extr'][] = $data[6];
+    $options['up_extr'][] = $data[7];
+    $options['up_extr'][] = $data[8];
     $conn->close();
     echo json_encode($options);
 ?>
