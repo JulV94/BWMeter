@@ -21,8 +21,8 @@
        $options['down'][] =  $data['down'];
        $options['up'][] =  $data['up'];
     }
-    $result = $conn->query("SELECT ROUND(MIN(ping),2), ROUND(AVG(ping),2), ROUND(MAX(ping),2), ROUND(MIN(down),2)
-        , ROUND(AVG(down),2), ROUND(MAX(down),2), ROUND(MIN(up),2), ROUND(AVG(up),2), ROUND(MAX(up),2)
+    $result = $conn->query("SELECT ROUND(MIN(ping),3), ROUND(AVG(ping),3), ROUND(MAX(ping),3), ROUND(MIN(down),3)
+        , ROUND(AVG(down),3), ROUND(MAX(down),3), ROUND(MIN(up),3), ROUND(AVG(up),3), ROUND(MAX(up),3)
         FROM measurements"); // fetch min avg max
     $data = mysqli_fetch_array($result);
     $options['ping_extr'][] = $data[0];

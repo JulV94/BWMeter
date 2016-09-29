@@ -27,7 +27,9 @@
                       <li><a class="page-scroll" href="#up">Upload</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                      <li><a onclick="queryGraphData();return false;" href="#"><span class="glyphicon glyphicon-refresh" aria-hidden="true" ></span> Refresh Graphs</a></li>
+                      <li><a onclick="queryGraphData();return false;" href="#">
+                          <span class="glyphicon glyphicon-refresh" aria-hidden="true" ></span> Refresh Graphs
+                      </a></li>
                   </ul>
               </div><!--/.nav-collapse -->
           </div>
@@ -36,7 +38,12 @@
       <section id="ping" class="container-fluid anchor">
           <div class="row-fluid">
               <div class="panel panel-default">
-                  <div class="panel-heading">Ping Time Chart<span id="ping-info" class="pull-right" ></span></div>
+                  <div class="panel-heading">
+                      <div class="row" >
+                          <div class="col-sm-4 col-xs-12" >Ping Time Chart</div>
+                          <div class="col-sm-8 col-xs-12" ><span id="ping-info" class="pull-right" ></span></div>
+                      </div>
+                  </div>
                   <div class="panel-body">
                       <div id="ping-graph"></div>
                   </div>
@@ -46,7 +53,12 @@
       <section id="down" class="container-fluid anchor">
           <div class="row-fluid">
               <div class="panel panel-default">
-                  <div class="panel-heading">Download Speed Chart<span id="down-info" class="pull-right" ></span></div>
+                  <div class="panel-heading">
+                      <div class="row" >
+                          <div class="col-sm-4 col-xs-12" >Download Speed Chart</div>
+                          <div class="col-sm-8 col-xs-12" ><span id="down-info" class="pull-right" ></span></div>
+                      </div>
+                  </div>
                   <div class="panel-body">
                       <div id="down-graph"></div>
                   </div>
@@ -56,7 +68,12 @@
       <section id="up" class="container-fluid anchor">
           <div class="row-fluid">
               <div class="panel panel-default">
-                  <div class="panel-heading">Upload Speed Chart<span id="up-info" class="pull-right" ></span></div>
+                  <div class="panel-heading">
+                      <div class="row" >
+                          <div class="col-sm-4 col-xs-12" >Upload Speed Chart</div>
+                          <div class="col-sm-8 col-xs-12" ><span id="up-info" class="pull-right" ></span></div>
+                      </div>
+                  </div>
                   <div class="panel-body">
                       <div id="up-graph"></div>
                   </div>
