@@ -7,13 +7,14 @@
     $table_name="measurements";
     // end db config
 
+    $decNbr=3;
+
     $conn = new mysqli($host, $username, $password, $db_name);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $options = array('time' => array(), 'ping' => array(), 'down' => array(), 'up' => array(), 'ping_extr' => array(),
-        'down_extr' => array(), 'up_extr' => array());
+    $options = array('time' => array(), 'ping' => array(), 'down' => array(), 'up' => array());
     $result = $conn->query("select * from measurements");
     while($data = mysqli_fetch_array($result)){
        $options['time'][] =  $data['measurement_time'];
@@ -21,19 +22,24 @@
        $options['down'][] =  $data['down'];
        $options['up'][] =  $data['up'];
     }
-    $result = $conn->query("SELECT ROUND(MIN(ping),3), ROUND(AVG(ping),3), ROUND(MAX(ping),3), ROUND(MIN(down),3)
-        , ROUND(AVG(down),3), ROUND(MAX(down),3), ROUND(MIN(up),3), ROUND(AVG(up),3), ROUND(MAX(up),3)
-        FROM measurements"); // fetch min avg max
+    $result = $conn->query("SELECT MIN(ping), AVG(ping), MAX(ping), STD(ping), MIN(down), AVG(down), MAX(down)
+        , STD(down), MIN(up), AVG(up), MAX(up), STD(up) FROM measurements"); // fetch min avg max
     $data = mysqli_fetch_array($result);
-    $options['ping_extr'][] = $data[0];
-    $options['ping_extr'][] = $data[1];
-    $options['ping_extr'][] = $data[2];
-    $options['down_extr'][] = $data[3];
-    $options['down_extr'][] = $data[4];
-    $options['down_extr'][] = $data[5];
-    $options['up_extr'][] = $data[6];
-    $options['up_extr'][] = $data[7];
-    $options['up_extr'][] = $data[8];
+    $options['ping_stats'][] = round($data[0], $decNbr); // min
+    $options['ping_stats'][] = round($data[1], $decNbr); // avg
+    $options['ping_stats'][] = round($data[2], $decNbr); // max
+    $options['ping_stats'][] = round($data[3], $decNbr); // std
+    $options['ping_stats'][] = round(100*$data[3]/$data[1], $decNbr); // % of std
+    $options['down_stats'][] = round($data[4], $decNbr);
+    $options['down_stats'][] = round($data[5], $decNbr);
+    $options['down_stats'][] = round($data[6], $decNbr);
+    $options['down_stats'][] = round($data[7], $decNbr);
+    $options['down_stats'][] = round(100*$data[7]/$data[5], $decNbr);
+    $options['up_stats'][] = round($data[8], $decNbr);
+    $options['up_stats'][] = round($data[9], $decNbr);
+    $options['up_stats'][] = round($data[10], $decNbr);
+    $options['up_stats'][] = round($data[11], $decNbr);
+    $options['up_stats'][] = round(100*$data[11]/$data[9], $decNbr);
     $conn->close();
     echo json_encode($options);
 ?>

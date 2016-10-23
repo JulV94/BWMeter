@@ -20,9 +20,9 @@ function queryGraphData() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             var result = JSON.parse(xmlhttp.responseText);
 
-            $('#ping-info').html('Min : '+result['ping_extr'][0]+'<span class="vDivider"></span>Avg : '+result['ping_extr'][1]+'<span class="vDivider"></span>Max : '+result['ping_extr'][2]+'<span class="vDivider"></span>ms');
-            $('#down-info').html('Min : '+result['down_extr'][0]+'<span class="vDivider"></span>Avg : '+result['down_extr'][1]+'<span class="vDivider"></span>Max : '+result['down_extr'][2]+'<span class="vDivider"></span>Mbits/s');
-            $('#up-info').html('Min : '+result['up_extr'][0]+'<span class="vDivider"></span>Avg : '+result['up_extr'][1]+'<span class="vDivider"></span>Max : '+result['up_extr'][2]+'<span class="vDivider"></span>Mbits/s');
+            $('#ping-info').html('<div class="col-md-4" >Minimum : '+result['ping_stats'][0]+' ms<br>Average : '+result['ping_stats'][1]+' ms</div><div class="col-md-4" >Maximum : '+result['ping_stats'][2]+' ms<br>Standard deviation : '+result['ping_stats'][3]+' ms</div><div class="col-md-4" >Relative standard deviation : '+result['ping_stats'][4]+' %</div>');
+            $('#down-info').html('<div class="col-md-4" >Minimum : '+result['down_stats'][0]+' Mbits/s<br>Average : '+result['down_stats'][1]+' Mbits/s</div><div class="col-md-4" >Maximum : '+result['down_stats'][2]+' Mbits/s<br>Standard deviation : '+result['down_stats'][3]+' Mbits/s</div><div class="col-md-4" >Relative standard deviation : '+result['down_stats'][4]+' %</div>');
+            $('#up-info').html('<div class="col-md-4" >Minimum : '+result['up_stats'][0]+' Mbits/s<br>Average : '+result['up_stats'][1]+' Mbits/s</div><div class="col-md-4" >Maximum : '+result['up_stats'][2]+' Mbits/s<br>Standard deviation : '+result['up_stats'][3]+' Mbits/s</div><div class="col-md-4" >Relative standard deviation : '+result['up_stats'][4]+' %</div>');
 
             var d3_ping = Plotly.d3;
             var d3_down = Plotly.d3;
