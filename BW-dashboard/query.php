@@ -15,7 +15,7 @@
     }
 
     $options = array('time' => array(), 'ping' => array(), 'down' => array(), 'up' => array());
-    $result = $conn->query("select * from measurements");
+    $result = $conn->query("select * from measurements WHERE measurement_time BETWEEN '" . $_POST['startTime'] . "' AND '" . $_POST['endTime'] . "'");
     while($data = mysqli_fetch_array($result)){
        $options['time'][] =  $data['measurement_time'];
        $options['ping'][] =  $data['ping'];
