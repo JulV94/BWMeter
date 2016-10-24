@@ -72,3 +72,19 @@ function queryGraphData() {
 
 // Query data
 queryGraphData();
+
+// date picker
+$(function () {
+    $('#datetimepickerStart').datetimepicker({
+
+    });
+    $('#datetimepickerEnd').datetimepicker({
+        useCurrent: false //Important! See issue #1075
+    });
+    $("#datetimepickerStart").on("dp.change", function (e) {
+        $('#datetimepickerEnd').data("DateTimePicker").minDate(e.date);
+    });
+    $("#datetimepickerEnd").on("dp.change", function (e) {
+        $('#datetimepickerStart').data("DateTimePicker").maxDate(e.date);
+    });
+});
