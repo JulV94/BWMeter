@@ -16,11 +16,14 @@ $(function() {
 
 // date picker
 $(function () {
+    var oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
     $('#datetimepickerStart').datetimepicker({
-
+        date: oneWeekAgo
     });
     $('#datetimepickerEnd').datetimepicker({
-        useCurrent: false //Important! See issue #1075
+        useCurrent: false, //Important! See issue #1075
+        date: new Date()
     });
     $("#datetimepickerStart").on("dp.change", function (e) {
         $('#datetimepickerEnd').data("DateTimePicker").minDate(e.date);
@@ -28,8 +31,8 @@ $(function () {
     $("#datetimepickerEnd").on("dp.change", function (e) {
         $('#datetimepickerStart').data("DateTimePicker").maxDate(e.date);
     });
+    queryGraphData();  // Query data
 });
-
 
 function queryGraphData() {
     var xmlhttp = new XMLHttpRequest();
@@ -87,8 +90,4 @@ function queryGraphData() {
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("startTime="+$('#datetimepickerStart').data("DateTimePicker").date().format('YYYY-MM-DD_HH:mm:ss')+
     "&endTime="+$('#datetimepickerEnd').data("DateTimePicker").date().format('YYYY-MM-DD_HH:mm:ss'));
-    console.log($('#datetimepickerStart').data("DateTimePicker").useCurrent());
 }
-
-// Query data
-queryGraphData();

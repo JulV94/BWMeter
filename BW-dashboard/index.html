@@ -35,28 +35,6 @@
                       <li><a class="page-scroll" href="#up">Upload</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                      <li><div class="container">
-              <div class='col-md-3'>
-                  <div class="form-group">
-                      <div class='input-group date' id='datetimepickerStart'>
-                          <input type='text' class="form-control" />
-                          <span class="input-group-addon">
-                              <span class="glyphicon glyphicon-calendar"></span>
-                          </span>
-                      </div>
-                  </div>
-              </div>
-              <div class='col-md-3'>
-                  <div class="form-group">
-                          <div class='input-group date' id='datetimepickerEnd'>
-                              <input type='text' class="form-control" />
-                              <span class="input-group-addon">
-                                  <span class="glyphicon glyphicon-calendar"></span>
-                              </span>
-                          </div>
-                  </div>
-              </div>
-          </div></li>
                       <li><a onclick="queryGraphData();return false;" href="#">
                           <span class="glyphicon glyphicon-refresh" aria-hidden="true" ></span> Refresh Graphs
                       </a></li>
@@ -64,6 +42,34 @@
               </div><!--/.nav-collapse -->
           </div>
       </nav>
+
+      <section id="dateSelect" class="container-fluid anchor">
+          <div class='col-md-4'>
+              <div class="form-group">
+                  <div class='input-group date' id='datetimepickerStart'>
+                      <input type='text' class="form-control" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+              </div>
+          </div>
+          <div class='col-md-4'>
+              <div class="form-group">
+                  <div class='input-group date' id='datetimepickerEnd'>
+                      <input type='text' class="form-control" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+              </div>
+          </div>
+          <div class='col-md-4'>
+              <div class="form-group">
+                  <button class="btn btn-default" onclick="queryGraphData();return false;">Apply</button>
+              </div>
+          </div>
+      </section>
 
       <section id="ping" class="container-fluid anchor">
           <div class="row-fluid">
@@ -81,13 +87,6 @@
               </div>
           </div>
       </section>
-
-
-
-      <section id="dateSelect">
-
-      </section>
-
 
       <section id="down" class="container-fluid anchor">
           <div class="row-fluid">

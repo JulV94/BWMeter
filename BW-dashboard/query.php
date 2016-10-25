@@ -23,7 +23,8 @@
        $options['up'][] =  $data['up'];
     }
     $result = $conn->query("SELECT MIN(ping), AVG(ping), MAX(ping), STD(ping), MIN(down), AVG(down), MAX(down)
-        , STD(down), MIN(up), AVG(up), MAX(up), STD(up) FROM measurements"); // fetch min avg max
+        , STD(down), MIN(up), AVG(up), MAX(up), STD(up) FROM measurements WHERE measurement_time BETWEEN '"
+        . $_POST['startTime'] . "' AND '" . $_POST['endTime'] . "'"); // fetch stats
     $data = mysqli_fetch_array($result);
     $options['ping_stats'][] = round($data[0], $decNbr); // min
     $options['ping_stats'][] = round($data[1], $decNbr); // avg
