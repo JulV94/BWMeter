@@ -1,6 +1,9 @@
 # BWMeter
 Bandwidth meter in Python, with web interface
 
+<img src="https://raw.githubusercontent.com/JulV94/BWMeter/dev/img/desktop.png" alt="desktop_screenshot">
+<img src="https://raw.githubusercontent.com/JulV94/BWMeter/dev/img/mobile.png" alt="mobile_screenshot" width="300">
+
 ## Prerequisites
 * speedtest-cli
 * A webserver (like apache or nginx)
